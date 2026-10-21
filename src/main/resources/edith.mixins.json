@@ -1,7 +1,0 @@
-{
-  "required": true,
-  "package": "dev.edith.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "client": ["PlayerListHudAccessor", "BossBarHudAccessor"],
-  "injectors": { "defaultRequire": 1 }
-}
