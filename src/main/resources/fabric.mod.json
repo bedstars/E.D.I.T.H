@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "edith",
+  "version": "${version}",
+  "name": "E.D.I.T.H",
+  "description": "In-game AI helper. Press I to open. Reads chat, scoreboard, tab, menus and more (optional), or runs fully client-only.",
+  "authors": ["you"],
+  "environment": "client",
+  "entrypoints": { "client": ["dev.edith.EdithClient"] },
+  "mixins": [{ "config": "edith.mixins.json", "environment": "client" }],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
