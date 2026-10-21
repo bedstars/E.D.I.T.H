@@ -11,7 +11,7 @@ public final class EdithHud {
 
     public static void render(GuiGraphicsExtractor g, DeltaTracker delta) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.options.hideGui || mc.screen instanceof EdithScreen) return;
+        if (Compat.hideGui(mc) || Compat.screen(mc) instanceof EdithScreen) return;
         long now = System.currentTimeMillis();
         String label;
         int dot;
