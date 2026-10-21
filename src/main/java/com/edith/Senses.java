@@ -282,7 +282,7 @@ public final class Senses {
     }
 
     private static void sampleMenu(Minecraft mc) {
-        if (!(Compat.screen(mc) instanceof AbstractContainerScreen<?> acs)) {
+        if (!(EdithHud.screen(mc) instanceof AbstractContainerScreen<?> acs)) {
             menuOpenNow = false;
             lastMenuTitle = "";
             return;
