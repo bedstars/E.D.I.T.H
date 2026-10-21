@@ -1,25 +1,38 @@
-# E.D.I.T.H
+# E.D.I.T.H (Fabric, client-side)
 
-In-game AI assistant for Minecraft (Fabric, 1.21.4). Press **I** to open it.
-
-- Chat with an AI that knows your game: inventory, position, chat, scoreboard, tab list, menus, boss bars, nearby players, block activity and more.
-- Crafting answers render as a real 3x3 grid with item icons.
-- Attach screenshots (SHOT button, F9, or drag and drop) and ask about them.
-- Notes questions and answers players post in chat (per server).
-- **Client only** mode: stops reading anything the server sends. Everything stays on your side except what you send to your AI provider.
-
-## Install
-1. Install Fabric Loader and Fabric API for Minecraft 1.21.4.
-2. Download the jar from **Releases** (or the **Actions** tab, artifact `edith-jar`) into `.minecraft/mods`.
-3. Launch, press **I**, open the **Core** tab and paste your API key.
-
-Supports Anthropic and any OpenAI-compatible endpoint (including local models). Image reading needs a vision-capable model.
+In-game AI helper. Press **I** (rebindable in Controls, or type `/edith`) to open the popup.
 
 ## Build
-```
-gradle build          # JDK 21 + Gradle 8.12, or ./gradlew build if you add the wrapper
-```
-The jar appears in `build/libs/`.
+Same as Blocks per sometimes: upload the whole folder to a GitHub repo, open the **Actions** tab,
+download the jar artifact (MC 26.1.2 and 26.2 builds). Needs Fabric API.
+
+## First start
+1. Press I -> **Brain** tab -> paste your API key (Anthropic by default; switch Provider to OPENAI for
+   OpenAI / OpenRouter / Ollama / LM Studio - set the Endpoint for those).
+   You can also set the `EDITH_API_KEY` environment variable instead of saving the key in `config/edith.json`.
+2. Chat tab -> type and press Enter.
+
+## What it does
+- **Chat**: general AI help + Minecraft help. Crafting questions come back as a real 3x3 grid with item icons,
+  the result slot, and a legend with each item's slot (top-left, center, ...).
+  Up/Down arrows recall old prompts, PageUp/PageDown or mouse wheel scroll, Ctrl+V pastes, `/clear` wipes the chat.
+- **Server** tab (the "SERVER LINK" chip in the title bar toggles this whole group): chat log, scoreboard, tab list,
+  titles / action bar / boss bars, open menus (names + lore), server block changes, Q&A notebook, private messages (off by default).
+- **Local** tab (always client side): movement + position + teleports, health/hunger/XP changes, your own
+  breaking/placing + blocks/crops per minute/hour, nearby entities, inventory, crosshair target.
+- **Memory** tab: every question players asked in chat + the replies that followed, saved per server in
+  `config/edith/<server>.json`. Menus you open are remembered too, so you can ask about them later.
+- **CLIENT ONLY** mode (SERVER LINK off): nothing the server sends is read. E.D.I.T.H still works as an AI helper and
+  still uses everything the Local tab lists.
 
 ## Privacy
-Your API key is stored in plain text in `config/edith.json`. Chat, scoreboard and other game data (and any screenshots you attach) are sent to the AI provider you configure when you ask a question. Use CLIENT ONLY mode to stop server data being included.
+- Nothing is sent anywhere until you press Enter/GO. Then your question + a text snapshot of the enabled senses goes to
+  the AI provider you configured.
+- Other players' chat lines are sent to the provider when "Chat log" / "Q&A notebook" are on. Turn those off or use CLIENT ONLY if you don't want that.
+- Private messages are filtered out by default (pattern based, not perfect).
+
+## Limits
+- E.D.I.T.H can only talk. It cannot press keys, run commands, or create files/images.
+- Recipes come from the AI model's knowledge, not the game files. Vanilla recipes are reliable; custom server recipes are not.
+- Q&A notebook uses simple rules (a chat line with "?" is a question; the next lines from other people are answers).
+- Scoreboard/tab/boss bar reading uses reflection, so if a future Minecraft update renames something that part just goes quiet instead of crashing.

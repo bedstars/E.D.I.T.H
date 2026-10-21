@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "edith",
+  "version": "${version}",
+  "name": "E.D.I.T.H",
+  "description": "In-game AI helper. Press I to open E.D.I.T.H: ask anything, get crafting grids, and let it read chat, scoreboard, tab and menus (or run fully client-only).",
+  "authors": [],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.edith.EdithMod"]
+  },
+  "mixins": [
+    { "config": "edith.mixins.json", "environment": "client" }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": ">=26.1.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
