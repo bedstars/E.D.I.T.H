@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "E.D.I.T.H",
   "description": "In-game AI helper. Press I to open. Reads chat, scoreboard, tab, menus and more (optional), or runs fully client-only.",
-  "authors": ["you"],
+  "authors": ["YOUR-GITHUB-NAME"],
   "environment": "client",
   "entrypoints": { "client": ["dev.edith.EdithClient"] },
   "mixins": [{ "config": "edith.mixins.json", "environment": "client" }],
